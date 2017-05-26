@@ -1,4 +1,6 @@
 class Book < ActiveRecord::Base
+  has_many :reviews, dependent: :destroy
+
   validates :title, presence: true, length: { in: 2..100 }
   validates :description, presence: true, length: { maximum: 1000 }
   validates :isbn, presence: true, uniqueness: true
