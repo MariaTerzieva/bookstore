@@ -1,28 +1,85 @@
-== README
+== Инструкции
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    След изпълняване на git clone https://github.com/MariaTerzieva/bookstore.git, трябва да се изпълнят:
+    rake db:migrate
+    rake db:seed
 
-Things you may want to cover:
+    Страницирането се показва само когато има над 20 книги или ревюта
 
-* Ruby version
+== Задача
 
-* System dependencies
+Back-end
 
-* Configuration
+Книгата има:
 
-* Database creation
+    Заглавие - меджу 2 и 100 символа 
+    Описание - не повече от 1000 символа.
+    ISBN - уникален за всяка една книга.
+    Снимка (използвайте paperclip gem - https://github.com/thoughtbot/paperclip)
+    Ревюта - всяка книга има множество ревюта
 
-* Database initialization
+Ревю:
 
-* How to run the test suite
+    Рейтинг - число м/у 0.0 - 5.0.
+    Текст - максимум 250 символа, минимум 20 символа.
+    Книга - всяко ревю трябва да е към книга
 
-* Services (job queues, cache servers, search engines, etc.)
+Търсачка на книги по заглавие. Връща JSON резултати т.е ще се консумира от AJAX/Javascript
 
-* Deployment instructions
+Админ опции:
 
-* ...
+    Създаване на книга
+    Изтриване на книга, заедно с всичките и ревюта
+    Промяна на заглавие, описание и ISBN на книга
+
+    Създаване на ревю
+    Изтриване на ревю
+    Прoмяна на ревю - текст и рейтинг.
+
+Routing:
+
+    Списък с всички книги на адрес /books/
+    Информация за книга на адрес /books/:id
+    Всички ревюта на книгата на адрес /books/:id/reviews
+    Добавяне на ревю към книга /books/:id/reviews/new
+
+Front-end използвайте foundation front-end framework 6 - http://foundation.zurb.com/
+
+Показване на списък със всички книги - /books/:
+
+    Снимка с размери 90x160px
+    Заглавие на книгата
+    ISBN на книгата
+    Рейтинг, базиран на средното от рейтингите за книгата
+    Линк към самата книга - /books/:id/
+    Pagination на книгите. По 20 на страница
+    Поле за търсене на заглавия.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Показване на книга на адрес - /books/:id/:
+
+    Снимка с размери 90x160px
+    Заглавие на книгата
+    ISBN на книгата
+    Рейтинг, базиран на средното от рейтингите за книгата
+    Списък с последните 3 ревюта към книгата
+    Линк към всички книги
+    Линк за добавяне на ревю
+
+Показване на ревюта към книга - /books/:id/reviews:
+
+    Линк към книгата
+    Текст на ревюто
+    Рейтинг
+    Pagination на ревютата
+
+Добаване на ревю на - /books/:id/reviews/new:
+
+    Поле за текст
+    Input за рейтинг
+    Бутон за submit :)
+    След успешно добавяне, се рeдиректва към книгата - /books/:id/
+
+* Използвайте Ruby On Rails 4.2 - http://guides.rubyonrails.org/v4.2/
+* Качете кода на решението, дори да не е пълно в github репозитори
+* За базата данни (sqlite или mysql) използвайте миграции http://guides.rubyonrails.org/v4.2/active_record_migrations.html 
