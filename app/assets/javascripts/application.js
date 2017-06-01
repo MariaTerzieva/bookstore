@@ -16,4 +16,11 @@
 //= require turbolinks
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+
+  $(document).on('submit', '#books_search', function() {
+    $.get(this.action, $(this).serialize(), null, "script");
+    return false;
+  });
+});

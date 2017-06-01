@@ -1,10 +1,10 @@
 class BooksController < ApplicationController
-  respond_to :html
+  respond_to :html, :js
 
   before_action :set_book, only: :show
 
   def index
-    @books = Book.order(created_at: :desc).paginate(per_page: 20, page: params[:page])
+    @books = Book.search(params[:search]).order(created_at: :desc).paginate(per_page: 20, page: params[:page])
     respond_with @books
   end
 

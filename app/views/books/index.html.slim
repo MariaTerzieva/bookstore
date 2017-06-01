@@ -1,0 +1,12 @@
+.text-center
+  h1 ALL BOOKS
+
+.row.collapse
+  = form_tag books_path, method: 'get', id: "books_search" do
+    .small-3.small-push-4.columns
+      = text_field_tag :search, params[:search]
+    .small-5.columns
+      = submit_tag "Search", name: nil, class: "button expand"
+
+div id="books"
+  = render 'books'
