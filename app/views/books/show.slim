@@ -1,0 +1,30 @@
+.text-center
+  h1 YOU ARE VIEWING
+
+.row
+  ul class="no-bullet"
+    li class="book-style" = image_tag(@book.cover.url(:thumb))
+    li class="book-style" 
+      ul class="no-bullet book-details"
+        li
+          h4 = @book.title
+        li = "ISBN: #{@book.isbn}"
+        li = "Rating: #{@book.average_rating}"
+    li class="book-style text-justify" = @book.description
+
+.row
+  h4 Latest reviews
+  - if @book.reviews.any?
+    - @book.reviews.last(3).each do |review|
+      ul class="no-bullet"
+        li class="text-justify" = review.text
+        li = "Rating: #{review.rating}"
+  - else
+    h6 No reviews yet
+
+.row
+  = link_to '← Back to all books', books_path
+  | &nbsp; | &nbsp;
+  = link_to 'Add review', new_book_review_path(@book)
+  | &nbsp; | &nbsp;
+  = link_to 'All reviews', book_reviews_path(@book)

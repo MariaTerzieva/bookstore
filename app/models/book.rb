@@ -8,4 +8,12 @@ class Book < ActiveRecord::Base
   validates :description, presence: true, length: { maximum: 1000 }
   validates :isbn, presence: true, uniqueness: true  
   validates_attachment :cover, presence: true, content_type: { content_type: /\Aimage\/.*\z/ }
+
+  def average_rating
+    if self.reviews.size > 0
+      self.reviews.average(:rating)
+    else
+      'Not rated yet'
+    end
+  end
 end

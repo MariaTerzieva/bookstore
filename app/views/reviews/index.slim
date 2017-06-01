@@ -1,0 +1,15 @@
+.text-center
+  h1 REVIEWS FOR #{link_to @book.title, book_path(@book)}
+
+.row
+  - if @reviews.any?
+    - @reviews.each do |review|
+      ul class="no-bullet"
+        li class="text-justify" = review.text
+        li = "Rating: #{review.rating}"
+  - else
+    h6 No reviews yet
+
+.row
+  .text-center        
+    = will_paginate @reviews, renderer: FoundationPagination::Rails

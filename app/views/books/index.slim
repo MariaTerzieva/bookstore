@@ -1,0 +1,21 @@
+.text-center
+  h1 ALL BOOKS
+
+.row
+  - if @books.any?
+    - @books.each do |book|
+      .small-6.columns
+        ul class="no-bullet"
+          li class="book-style" = image_tag(book.cover.url(:thumb))
+          li class="book-style" 
+            ul class="no-bullet book-details"
+              li
+                h4 = book.title
+              li = "ISBN: #{book.isbn}"
+              li = "Rating: #{book.average_rating}"
+              li = link_to 'View', book_path(book)
+          li class="book-style text-justify" = book.description
+
+.row
+  .text-center        
+    = will_paginate @books, renderer: FoundationPagination::Rails

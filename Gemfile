@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 gem 'foundation-rails'
-gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-foundation'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 gem 'simple_form'

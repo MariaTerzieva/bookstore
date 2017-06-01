@@ -15,3 +15,12 @@
  *= require foundation_and_overrides
 
  */
+
+li.book-style:nth-child(-n+2) {
+  display:inline-block;
+  vertical-align: top
+}
+
+.book-details {
+  margin-left: 20px;
+}

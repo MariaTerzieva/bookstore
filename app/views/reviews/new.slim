@@ -1,0 +1,11 @@
+.text-center
+  h1 ADDING NEW REVIEW FOR #{link_to @book.title, book_path(@book)}
+
+.row
+  .small-4.small-centered.columns
+    = simple_form_for [@book, @review] do |f|
+      = f.input :text
+      = f.input :rating
+
+      .button-group
+        = f.button :submit, class: 'small button'
